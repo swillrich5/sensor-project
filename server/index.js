@@ -3,14 +3,26 @@ const express = require('express');
 // create an instance of our server application
 const app = express();
 
+const getSensorReadings = require('./get-sensor-readings');
+
+
+
 // initial route for pulling temperature
 app.get('/temperature', function(req, res) {
-    res.send('24 C');
+    getSensorReadings((err, temperature, humidity) => {
+        if (!err) {
+            res.send(temperature.toFixed(1) + "°F");
+        }
+    });
 });
 
 // initial route for pulling humidity
 app.get('/humidity', function(req, res) {
-    res.send('48%');
+    getSensorReadings((err, temperature, humidity) => {
+        if (!err) {
+            res.send(humidity.toFixed(1) + "%");
+        }
+    });
 });
 
 // listen for requests on port 3000
