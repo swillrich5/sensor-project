@@ -1,6 +1,8 @@
 // Import the sendor library
 const sensor = require('node-dht-sensor');
 
+
+
 // We abstract away the functionality to read sensor
 // information inside the getSensorReadings funtion.
 // This function is also asynchronous.  It accepts a 
